@@ -22,7 +22,8 @@ export default function Main() {
 
   const [winner, setWinner] = useState("");
 
-  const makeMove = (index) => {
+  const handleCellClick = (index) => {
+    if (cells[index] !== "" || winner !== "") return;
     let newCells = [...cells];
     newCells[index] = value;
     setCell(newCells);
@@ -30,11 +31,6 @@ export default function Main() {
 
     // evaluate if winner
     setWinner(evaluateGame(newCells));
-  };
-
-  const handleCellClick = (index) => {
-    if (cells[index] !== "" || winner !== "") return;
-    makeMove(index);
   };
 
   const resetGame = () => {
@@ -53,7 +49,13 @@ export default function Main() {
     // move updated so checking minimax
     if (!xTurn) {
       const { bestMove } = findBestMove(cells);
-      makeMove(bestMove);
+      let newCells = [...cells];
+      newCells[index] = value;
+      setCell(newCells);
+      setXTurn(!xTurn);
+
+      // evaluate if winner
+      setWinner(evaluateGame(newCells));
     }
     // console.log({ bestMove, bestScore });
 
