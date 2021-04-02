@@ -22,26 +22,6 @@ export default function Main() {
 
   const [winner, setWinner] = useState("");
 
-  useEffect(() => {
-    if (winner !== "") {
-      setStatus(`${winner.toUpperCase()} won!`);
-    } else setStatus(`${xTurn ? "X" : "O"} is next`);
-  }, [winner, xTurn]);
-
-  useEffect(() => {
-    // move updated so checking minimax
-    if (!xTurn) {
-      const { bestMove } = findBestMove(cells);
-      makeMove(bestMove);
-    }
-    // console.log({ bestMove, bestScore });
-
-    if (cells.filter((each) => each === "").length === 0) {
-      //over no winner draw
-      setStatus("Draw. Reset to play");
-    }
-  }, [cells, xTurn, value, makeMove]);
-
   const makeMove = (index) => {
     let newCells = [...cells];
     newCells[index] = value;
@@ -63,6 +43,25 @@ export default function Main() {
     setXTurn(true);
   };
 
+  useEffect(() => {
+    if (winner !== "") {
+      setStatus(`${winner.toUpperCase()} won!`);
+    } else setStatus(`${xTurn ? "X" : "O"} is next`);
+  }, [winner, xTurn]);
+
+  useEffect(() => {
+    // move updated so checking minimax
+    if (!xTurn) {
+      const { bestMove } = findBestMove(cells);
+      makeMove(bestMove);
+    }
+    // console.log({ bestMove, bestScore });
+
+    if (cells.filter((each) => each === "").length === 0) {
+      //over no winner draw
+      setStatus("Draw. Reset to play");
+    }
+  }, [cells, xTurn, value, makeMove]);
   const gameCells = [];
 
   for (let i = 0; i < 9; i++) {
