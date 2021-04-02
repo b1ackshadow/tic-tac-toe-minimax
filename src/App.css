@@ -49,14 +49,14 @@ body {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
-  grid-gap: 15px;
+  grid-gap: 12px;
   margin-top: 50px;
   background: #7d2b79;
 }
 
 .game-cell {
-  height: 200px;
-  width: 200px;
+  height: 80px;
+  width: 100px;
   background: #83297f;
   /* cursor: pointer; */
   font-size: 100px;
@@ -72,14 +72,14 @@ body {
 
 .x::after {
   content: "×";
-  font-size: 200px;
+  font-size: 100px;
   /* color: #101010; */
 }
 
 .o::after {
   content: "○";
   color: #f2ebd3;
-  font-size: 150px;
+  font-size: 80px;
 }
 
 @media only screen and (max-width: 768px) {

@@ -37,6 +37,7 @@ export default function Main() {
     setCell(new Array(9).fill(""));
     setWinner("");
     setXTurn(true);
+    setStatus("X is next");
   };
 
   useEffect(() => {
@@ -61,7 +62,7 @@ export default function Main() {
 
     if (cells.filter((each) => each === "").length === 0) {
       //over no winner draw
-      setStatus("Draw. Reset to play");
+      setStatus("Draw :(");
     }
   }, [cells, xTurn, value]);
   const gameCells = [];
