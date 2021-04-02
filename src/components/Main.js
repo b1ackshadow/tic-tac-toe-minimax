@@ -50,7 +50,7 @@ export default function Main() {
     if (!xTurn) {
       const { bestMove } = findBestMove(cells);
       let newCells = [...cells];
-      newCells[index] = value;
+      newCells[bestMove] = value;
       setCell(newCells);
       setXTurn(!xTurn);
 
@@ -63,7 +63,7 @@ export default function Main() {
       //over no winner draw
       setStatus("Draw. Reset to play");
     }
-  }, [cells, xTurn, value, makeMove]);
+  }, [cells, xTurn, value]);
   const gameCells = [];
 
   for (let i = 0; i < 9; i++) {
