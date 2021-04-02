@@ -5,11 +5,17 @@
   color: #242424;
 }
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 body {
   display: flex;
   font-family: monospace;
   justify-content: center;
   background: #181a1b;
+  position: relative;
 }
 
 .container {
