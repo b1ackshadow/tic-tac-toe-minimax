@@ -40,7 +40,7 @@ export default function Main() {
       //over no winner draw
       setStatus("Draw. Reset to play");
     }
-  }, [cells, xTurn, value]);
+  }, [cells, xTurn, value, makeMove]);
 
   const makeMove = (index) => {
     let newCells = [...cells];
