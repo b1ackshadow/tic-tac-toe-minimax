@@ -23,7 +23,6 @@ export default function Main() {
   const [winner, setWinner] = useState("");
 
   useEffect(() => {
-    console.log(`Winner updated ${winner}`);
     if (winner !== "") {
       setStatus(`${winner.toUpperCase()} won!`);
     } else setStatus(`${xTurn ? "X" : "O"} is next`);
@@ -32,16 +31,8 @@ export default function Main() {
   useEffect(() => {
     // move updated so checking minimax
     if (!xTurn) {
-      console.log("Before call", cells);
       const { bestMove } = findBestMove(cells);
-      let newCells = [...cells];
-
-      newCells[bestMove] = value;
-      setCell(newCells);
-      setXTurn(!xTurn);
-
-      // evaluate if winner
-      setWinner(evaluateGame(newCells));
+      makeMove(bestMove);
     }
     // console.log({ bestMove, bestScore });
 
@@ -51,8 +42,7 @@ export default function Main() {
     }
   }, [cells, xTurn, value]);
 
-  const handleCellClick = (index) => {
-    if (cells[index] !== "" || winner !== "") return;
+  const makeMove = (index) => {
     let newCells = [...cells];
     newCells[index] = value;
     setCell(newCells);
@@ -60,6 +50,11 @@ export default function Main() {
 
     // evaluate if winner
     setWinner(evaluateGame(newCells));
+  };
+
+  const handleCellClick = (index) => {
+    if (cells[index] !== "" || winner !== "") return;
+    makeMove(index);
   };
 
   const resetGame = () => {

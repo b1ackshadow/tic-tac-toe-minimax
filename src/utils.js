@@ -21,7 +21,6 @@ const findBestMove = (board) => {
 
     //3rd arg true is the indicator of whose turn i.e, maximizer
     let score = minimax(boardCopy, depth - 1, true);
-    console.log(`Move : ${idx} Score: ${score}`);
     if (score < bestScore) {
       bestScore = score;
       bestMove = idx;
