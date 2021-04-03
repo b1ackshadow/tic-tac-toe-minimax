@@ -38,7 +38,7 @@ const minimax = (board, depth, isMaximizerTurn) => {
 
   if (result !== "") {
     // console.log(board, depth);
-    return result === "×" ? depth : -depth;
+    return result === "×" ? depth + 1 : -depth - 1;
   }
 
   //if depth reached and there is no more moves and no winner so tie
