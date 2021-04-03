@@ -21,12 +21,14 @@ const findBestMove = (board) => {
 
     //3rd arg true is the indicator of whose turn i.e, maximizer
     let score = minimax(boardCopy, depth - 1, true);
+
+    console.log(`Move : ${idx + 1} Score : ${score} \n\n`);
     if (score < bestScore) {
       bestScore = score;
       bestMove = idx;
     }
   });
-
+  console.log("");
   return { bestMove, bestScore };
 };
 
@@ -36,7 +38,7 @@ const minimax = (board, depth, isMaximizerTurn) => {
 
   if (result !== "") {
     // console.log(board, depth);
-    return result === "×" ? 10 : -10;
+    return result === "×" ? depth : -depth;
   }
 
   //if depth reached and there is no more moves and no winner so tie
